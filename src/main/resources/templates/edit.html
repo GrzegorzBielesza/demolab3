@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head"> </head>
+<style>
+    .error {
+        color: red;
+    }
+</style>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<h1>Edycja danych użytkownika:</h1>
+<form th:action="@{/edit}" method="POST" th:object="${user}">
+    <input type="text" th:field="*{name}" placeholder="Imię"/>
+    <p th:if="${#fields.hasErrors('name')}" th:class="${#fields.hasErrors('name')}? error"> Invalid name </p>
+    <input type="text" th:field="*{surname}" placeholder="Nazwisko"/>
+    <p th:if="${#fields.hasErrors('surname')}" th:class="${#fields.hasErrors('surname')}? error"> Invalid surname </p>
+    <input type="text" th:field="*{login}" placeholder="Login"/>
+    <p th:if="${#fields.hasErrors('login')}" th:class="${#fields.hasErrors('login')}? error"> Invalid login </p>
+    <input type="password" th:field="*{password}" placeholder="Hasło"/>
+    <p th:if="${#fields.hasErrors('password')}" th:class="${#fields.hasErrors('password')}? error"> Invalid password </p>
+    <button type="submit">Edytuj profil</button>
+</form>
+<div th:include="layout :: footer"></div>
+</body>
+</html>
